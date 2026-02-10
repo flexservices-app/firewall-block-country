@@ -1,6 +1,8 @@
 Block IP countries in Windows Firewall automatically
 
 How to block an IP from China
+---------------------------------
+
 
 Set App = CreateObject("FlexFirewallManager.Admin")
 App.FormatOutput="xml"
