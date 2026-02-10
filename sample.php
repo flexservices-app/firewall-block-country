@@ -1,4 +1,6 @@
 How to block an IP from China
+--------------------------------
+
 
 $app = new COM("FlexFirewallManager.Admin");
 $app->FormatOutput="json";
