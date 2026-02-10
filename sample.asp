@@ -1,8 +1,6 @@
 Block IP countries in Windows Firewall automatically
 
-
-ASP
-
+How to block an IP from China
 
 Set App = CreateObject("FlexFirewallManager.Admin")
 App.FormatOutput="xml"
@@ -17,27 +15,8 @@ Dim returnstring : returnstring = App.InfoIP(strIP)
 Set objxml = CreateObject("Msxml2.DOMDocument")
 objxml.LoadXml(return_string)
 if lcase(objxml.SelectSingleNode("/output/result").text) = "true" then
-if ucase(objxml.SelectSingleNode("/output/countrycode").text) = "CN" then
-App.BlockIp(strIP)
+  if ucase(objxml.SelectSingleNode("/output/countrycode").text) = "CN" then
+    App.BlockIp(strIP)
+  end if
 end if
-end if
 
-
-
-PHP
-
-$app = new COM("FlexFirewallManager.Admin");
-$app->FormatOutput="json";
-$app->Username="Plesk Domain User";
-$app->Password="Plesk Domain Pass";
-$strIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
-if ($strIP == ""){$strIP = $_SERVER['REMOTE_ADDR'];}
-
-$returnstring = app->InfoIP($strIP);
-
-$appjson = json_decode($returnstring);
-if($appjson->result){
-if ($appjson->countrycode" == "CN"){
-$app->BlockIp($strIP);
-}
-}
